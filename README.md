@@ -15,6 +15,8 @@ http://localhost:9090
 Apache
 http://localhost:8080
 
+http://localhost:8080/server-status/?auto
+
 
 # Surveillez Apache avec Prometheus et Grafana
 https://fr.linux-console.net/?p=21996

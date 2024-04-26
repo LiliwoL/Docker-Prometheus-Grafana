@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.8"
 
 services:
   # ========================================
@@ -11,6 +11,11 @@ services:
     ports:
       - 8080:80
       - 9117:9117
+
+    # On lance d'abord le script qui va lancer l'exporter et ensuite le serveur apache
+    command: >
+      sh -c "/usr/local/apache2/apache_exporter_installer.sh && httpd-foreground"
+
     volumes:
       # Document Root
       - ./www:/usr/local/apache2/htdocs/
@@ -18,7 +23,9 @@ services:
       # Script de configuration du apache exporter
       - ./config/apache/apache_exporter_installer.sh:/usr/local/apache2/apache_exporter_installer.sh
 
-      #- ./config/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      # Configuration du module status
+      - ./config/apache/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./config/apache/httpd-info.conf:/usr/local/apache2/conf/extra/httpd-info.conf
 
   # ========================================
   # Prometheus

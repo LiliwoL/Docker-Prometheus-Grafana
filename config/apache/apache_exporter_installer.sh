@@ -17,7 +17,4 @@ groupadd --system prometheus
 useradd -s /sbin/nologin --system -g prometheus prometheus
 
 # Lancement de apache_exporter
-apache_exporter &
-
-# Vérification
-netstat -plnt | grep 9117
+apache_exporter --insecure --scrape_uri=http://localhost/server-status/?auto &
