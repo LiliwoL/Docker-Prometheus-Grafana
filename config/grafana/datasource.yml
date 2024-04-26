@@ -1,0 +1,11 @@
+apiVersion: 1
+
+# Liste des sources de données de Grafana
+datasources:
+  # Lecture des données récupérées par Prometheus
+  - name: Prometheus
+    type: prometheus
+    url: http://localhost:9090
+    isDefault: true
+    access: proxy
+    editable: true
